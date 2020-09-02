@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import com.example.common.Payment;
+import com.example.common.TransactionRequest;
+import com.example.common.TransactionResponse;
 import com.example.entity.Order;
 import com.example.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,7 @@ public class OrderController {
     private OrderService service;
 
     @PostMapping("/bookOrder")
-    public Order bookOrder(@RequestBody Order order) {
-        return service.saveOrder(order);
+    public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
+        return service.saveOrder(request);
     }
 }
