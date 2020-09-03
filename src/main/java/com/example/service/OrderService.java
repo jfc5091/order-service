@@ -25,7 +25,7 @@ public class OrderService {
         payment.setOrderId(order.getId());
         payment.setAmount(order.getPrice());
         //rest call
-        Payment paymentResponse = template.postForObject("http://localhost:9191/payment/doPayment", payment, Payment.class); //because controller calling this method is Post
+        Payment paymentResponse = template.postForObject("http://PAYMENT-SERVICE/payment/doPayment", payment, Payment.class); //because controller calling this method is Post
         response = paymentResponse.getPaymentStatus().equals("success") ? "payment processing" : "there is a failure in payment api";
         repository.save(order);
         return new TransactionResponse(order, paymentResponse.getAmount(), paymentResponse.getTransactionId(), response );
